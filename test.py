@@ -1,6 +1,8 @@
 def print_some_text(text):
     return text
 
-text = input('Input some text: ')
+def second_func(text):
+    return text[::-1]
 
-print(print_some_text(text))
+text = input('Input some text: ')
+print(print_some_text(text),second_func(text))
