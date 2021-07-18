@@ -4,25 +4,39 @@
 import time
 
 
-def time_f(func):
+def outer(func): # декоратор для простых функций
     def inner(*args, **kwargs):
         start = time.time()
-        func(*args, **kwargs)
+        res = func(*args, **kwargs)
         finish = time.time()
         print(finish - start)
+        return res
     return inner
 
-@time_f
+
+def fact_decorator(func): # декоратор для рекурсии, не работает правильно(
+    def inner(n):
+        start = time.time()
+        res = func(n)
+        finish = time.time()
+        print(finish - start)
+        return res
+    return inner
+
+
+@fact_decorator
 def test(n):
     time.sleep(1)
     if n == 1:
         return 1
-    return test((n - 1) * n)
+    return test(n - 1) * n
 
-@time_f
-def test_2():
+
+@outer
+def test_2(a, b):
     time.sleep(1)
-    print('www')
+    return a + b
 
-print(test(1))
-test_2()
+
+print(test(3))
+print(test_2(4, 4))
