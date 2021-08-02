@@ -10,7 +10,7 @@ import pytest
 def test_fib(a, expected):
     assert fib(a) == expected
 
-
+ы
 @pytest.mark.parametrize('a, exp_raises', [
     ('a', TypeError),
     (0, RecursionError),
