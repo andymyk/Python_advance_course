@@ -13,7 +13,7 @@ conn = cx_Oracle.connect(user=username, password=password, dsn=dsn_tns)
 cur = conn.cursor()
 
 sql_create = """
-CREATE TABLE ORDERS(
+CREATE TABLE orders(
 order_id INTEGER,
 created_dt DATE DEFAULT SYSDATE,
 updated_dt DATE,
@@ -25,7 +25,7 @@ creator_id INTEGER
 )
 """
 sql_cr = """
-CREATE TABLE EMPLOYEES(
+CREATE TABLE employees(
 employee_id INTEGER,
 fio VARCHAR2(55),
 position VARCHAR2(50),
@@ -33,7 +33,7 @@ department_id INTEGER
 )"""
 
 sql_cre = """
-CREATE TABLE DEPARTMENTS(
+CREATE TABLE departments(
 department_id INTEGER,
 department_name VARCHAR2(50))
 """
