@@ -2,9 +2,8 @@ import random
 
 
 class Car:
-    is_police = False
-    def __init__(self, max_speed, color, name,is_police=False):
-        self.speed = max_speed
+    def __init__(self, max_speed, color, name):
+        self.max_speed = max_speed
         self.color = color
         self.name = name
         self.is_police = False
@@ -28,22 +27,29 @@ class Car:
         return 'Это не полицейская машина'
 
 class TownCar(Car):
+    speed = random.randint(10, 120)
+    speed_limit = 60
     def show_speed(self):
-        speed = random.randint(10,100)
-        if speed > 60:
-            return f'Вы превысыли скорость! {speed} км\ч'
-        return f'Текущяя скорость автомобиля: {speed} км\ч'
+        if TownCar.speed > TownCar.speed_limit:
+            return f'Вы превысыли скорость! {TownCar.speed} км\ч'
+        return f'Текущяя скорость автомобиля: {TownCar.speed} км\ч'
 
 
 class WorkCar(Car):
+    speed = random.randint(10, 100)
+    speed_limit = 40
     def show_speed(self):
-        speed = random.randint(10,100)
-        if speed > 40:
-            return f'Вы превысыли скорость! {speed} км\ч'
-        return f'Текущяя скорость автомобиля: {speed} км\ч'
+        if WorkCar.speed > WorkCar.speed_limit:
+            return f'Вы превысыли скорость! {WorkCar.speed} км\ч'
+        return f'Текущяя скорость автомобиля: {WorkCar.speed} км\ч'
 
 
 class PoliceCar(Car):
+    def __init__(self, max_speed, color, name):
+        super().__init__(max_speed, color, name)
+        self.is_police = True
+
+
     def check_car(self):
         self.is_police = True
         if self.is_police == True:
