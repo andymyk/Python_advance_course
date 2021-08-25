@@ -51,7 +51,6 @@ class PoliceCar(Car):
 
 
     def check_car(self):
-        self.is_police = True
         if self.is_police == True:
             return 'Это полицейская машина'
         return 'Это не полицейская машина'
