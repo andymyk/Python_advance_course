@@ -1,6 +1,6 @@
 import asyncio
 import psycopg2
-
+#
 
 class Server:
     def __init__(self, host, port):
@@ -17,14 +17,13 @@ class Server:
         print(addr)
         print('received %r from %r' % (message, addr))
         writer.write(f"echo server - {message}".encode())
-
         writer.close()
 
     def run_server(self):
         """Запускает сервер в вечном цикле"""
         loop = asyncio.get_event_loop()
         coro = asyncio.start_server(client_connected_cb=self.handle_echo, host=self.host, port=self.port,
-                                    loop=loop)  # передали параметры
+                                    loop=loop)
         loop.run_until_complete(coro)
 
         try:
@@ -45,6 +44,11 @@ class Server:
                 if i[1] == 'False':
                     cursor.execute(f"""UPDATE subscribers SET is_subscribed = 'True' where username = '{i[0]}';""")
                     conn.commit()
+                    break
+                if i[1] == 'True':
+                    cursor.execute(f"""UPDATE subscribers SET is_subscribed = 'False' where username = '{i[0]}';""")
+                    conn.commit()
+                    break
 
 serv = Server(host='127.0.0.1', port=5000)
 serv.run_server()
