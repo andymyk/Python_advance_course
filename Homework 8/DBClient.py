@@ -1,4 +1,4 @@
-from congif import host, user, password, db_name
+from config import host, user, password, db_name
 import psycopg2
 
 
