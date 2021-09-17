@@ -5,7 +5,6 @@ from datetime import datetime
 import json
 
 logger = getLogger(__name__)
-logger.setLevel("DEBUG")
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.bind(HOST_PORT_PAIR)
@@ -19,4 +18,3 @@ with conn, sock:
         logger.error(f"{datetime.now()}, {received_data}")
         with open('received_data.json', 'w') as f:
             json.dump(received_data, f)
-        break
