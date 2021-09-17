@@ -11,7 +11,12 @@ LEFT JOIN employees e ON(o.creator_id = e.employee_id)"""
 
 
     def __init__(self):
-        self.connect = None
+        self.connect = psycopg2.connect(
+            host=host,
+            user=user,
+            password=password,
+            database=db_name
+        )
 
     def setup(self):
         self.connect = psycopg2.connect(
